@@ -51,9 +51,14 @@ public class PaymentsController {
         return new ResponseEntity<>(url, HttpStatus.OK);
     }
 
-    @GetMapping("/makePayment/{transactionId}")
-    public ResponseEntity<String> makePayment(@PathVariable String transactionId) {
-        return new ResponseEntity<>(transactionId, HttpStatus.OK);
+    @GetMapping("/makePayment")
+    public ResponseEntity<String> makePayment(@RequestParam(name = "transactionId") String transactionId,
+                                              @RequestParam(name = "merchantName") String merchantName,
+                                              @RequestParam(name = "merchantUpi") String merchantUpi,
+                                              @RequestParam(name = "amount") String amount)
+    {
+        return new ResponseEntity<>(transactionId+ "-" +merchantUpi, HttpStatus.OK);
+
     }
 
 }
